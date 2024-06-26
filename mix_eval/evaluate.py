@@ -39,7 +39,6 @@ def parse_args():
         "--model_name", 
         type=str, 
         required=True, 
-        choices=AVAILABLE_MODELS.keys(), 
         help="Model to evaluate."
         )
     parser.add_argument(
