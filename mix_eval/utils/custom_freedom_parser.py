@@ -36,7 +36,7 @@ class ChatGPTJudgeCloseendFreeform:
     
     def _GPT_decode(self, inputs):
         completion = self.client.chat.completions.create(
-                            model='qwen',
+                            model='qwen2-72b',
                             response_format={ "type": 'text'},
                             max_tokens=self.MAX_NEW_TOKENS,
                             messages=self.format_prompts(inputs),
