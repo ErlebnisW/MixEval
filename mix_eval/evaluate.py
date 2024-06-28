@@ -42,6 +42,12 @@ def parse_args():
         help="Model to evaluate."
         )
     parser.add_argument(
+        "--model_path", 
+        type=str, 
+        required=True, 
+        help="Model path to evaluate."
+        )
+    parser.add_argument(
         "--benchmark", 
         type=str, 
         required=True, 
@@ -150,6 +156,7 @@ def _eval(args):
         args.version,
         f"{args.model_name}_{args.split}.jsonl"
         )
+    
     os.makedirs(
         os.path.dirname(response_file), 
         exist_ok=True
