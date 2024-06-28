@@ -10,7 +10,7 @@ from mix_eval.utils.common_utils import get_gpu_memory
 class Gemma_2B(BaseModel):
     def __init__(self, args):
         super().__init__(args)
-        self.model_name = "/data1/WM_workspace/MDSPO/output/mdpo_kl_0.4_4_ppo_epoch"
+        self.model_name = args.model_path
         self.attn_implementation = 'flash_attention_2' # If use default, set to None
 
         self.model = self.build_model()
