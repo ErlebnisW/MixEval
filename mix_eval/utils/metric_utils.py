@@ -4,16 +4,30 @@ random.seed(42)
 import numpy as np
 import ast
 
-from mix_eval.utils.judge_freeform_parser import (
+from mix_eval.utils.custom_freedom_parser import (
     ChatGPTJudgeCloseendFreeform, 
     ClaudeJudgeCloseendFreeform, 
     GeminiJudgeCloseendFreeform
-    )
-from mix_eval.utils.judge_multichoice_parser import (
+)
+
+from mix_eval.utils.custom_multichoice_parser import (
     ChatGPTJudgeCloseendMultichoice,
     ClaudeJudgeCloseendMultichoice,
     GeminiJudgeCloseendMultichoice
-    )
+)
+
+# from mix_eval.utils.custom_freeform_parser import (
+#     ChatGPTJudgeCloseendFreeform, 
+#     ClaudeJudgeCloseendFreeform, 
+#     GeminiJudgeCloseendFreeform
+#     )
+
+# from mix_eval.utils.judge_multichoice_parser import (
+#     ChatGPTJudgeCloseendMultichoice,
+#     ClaudeJudgeCloseendMultichoice,
+#     GeminiJudgeCloseendMultichoice
+#     )
+
 from mix_eval.utils.common_utils import (
     extract_basemodel_response_3e, 
     extract_basemodel_response_2e,
@@ -287,7 +301,10 @@ def get_score_from_judge(judge_response):
 def parse_freeform_response_model(args, tasks):
     tasks_remained = tasks
     tasks_judged = []
-    model_judge = ChatGPTJudgeCloseendFreeform(args)
+    if args.freeform_judge == 'custom':
+        model_judge = ChatGPTJudgeCloseendFreeform(args)
+    else:
+        model_judge = ChatGPTJudgeCloseendFreeform(args)
     
     MAX_RETRY_NUM = 10
     for _ in range(MAX_RETRY_NUM):
