@@ -1,9 +1,9 @@
 export CUDA_VISIBLE_DEVICES=0
-# export HF_ENDPOINT="https://hf-mirror.com"
+export HF_ENDPOINT="https://hf-mirror.com"
 
-name=gemma-2b_alpaca_sft
-model_name=gemma_2b
-model_path=/data1/WM_workspace/MDSPO/output/gemma-2b_alpaca_sft
+name=qwen2-2b_alpaca_sft
+model_name=qwen_2_7b_instruct
+model_path=/data1/WM_workspace/MDSPO/output/qwen2-1.5b_alpaca_sft
 
 python -m mix_eval.evaluate \
     --model_name ${model_name}\

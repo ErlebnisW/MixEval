@@ -23,6 +23,7 @@ AVAILABLE_MODELS = {
     "qwen_15_110b_chat": "Qwen_15_110B_Chat",
     "qwen_15_moe_a27b_chat": "Qwen_15_MoE_A27B_Chat",
     "qwen_max_0428": "Qwen_Max_0428",
+    
     "qwen_2_7b_instruct": "Qwen_2_7B_Instruct",
     "qwen_2_72b_instruct": "Qwen_2_72B_Instruct",
     

@@ -5,7 +5,7 @@ from mix_eval.api.registry import register_model
 class Qwen_2_7B_Instruct(ChatModel):
     def __init__(self, args):
         super().__init__(args)
-        self.model_name = "Qwen/Qwen2-7B-Instruct"
+        self.model_name = args.model_path
         self.attn_implementation = 'flash_attention_2' # If use default, set to None
         self.trust_remote_code = True
         
