@@ -8,3 +8,4 @@ build_dynamic_benchmark_version_control.sh
 .env
 resampled_output/
 misc/
+*.pyc
