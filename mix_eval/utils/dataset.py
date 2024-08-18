@@ -1,7 +1,7 @@
 import os
 import json
 import nltk
-nltk.download('punkt', quiet=True)
+# nltk.download('punkt', quiet=False)
 
 import torch
 from torch.utils.data import Dataset
