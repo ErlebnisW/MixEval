@@ -392,8 +392,8 @@ def compute_metric_closeended_freeform_modelparse(args):
             for case in results:
                 f.write(json.dumps(case) + "\n")
         
-        print("Sleep 60 seconds to avoid ratelimit error ... ")
-        time.sleep(60)
+        print("Sleep 10 seconds to avoid ratelimit error ... ")
+        time.sleep(10)
     
     if args.verbose:
         print(f"[Close-ended Free-form Model Parser]")
@@ -590,8 +590,8 @@ def compute_metric_closeended_multichoice_modelparse(args):
             for case in results:
                 f.write(json.dumps(case) + "\n")
                 
-        print("Sleep 60 seconds to avoid ratelimit error ... ")
-        time.sleep(60)
+        print("Sleep 10 seconds to avoid ratelimit error ... ")
+        time.sleep(10)
     
     if args.verbose:
         print(f"[Close-ended Multiple-choice Model Parser]")
