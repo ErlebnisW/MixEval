@@ -12,7 +12,7 @@ from mix_eval.utils.common_utils import get_gpu_memory
 class Llama_3_8B_Instruct(ChatModel):
     def __init__(self, args):
         super().__init__(args)
-        self.model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
+        self.model_name = args.model_path
         self.attn_implementation = 'flash_attention_2' # If use default, set to None
         
         self.SYSTEM_MESSAGE = {"role": "system", "content": "You are a pirate chatbot who always responds in pirate speak!"} # set to None if no system message
