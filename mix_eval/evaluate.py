@@ -149,10 +149,17 @@ def parse_args():
         "This will save budge for those models that has been judged before."
         "it also helps to do some analysis easily without running judgements again."
         )
+    parser.add_argument(
+        "--cpu_offload_gb", 
+        type=int, 
+        default=None, 
+        help="Amount of memory (in GB) to offload to CPU for loading the weights. "
+        "Only valid with vLLM models."
+    )
     return parser.parse_args()
 
 
-def _eval(args):
+def _eval(args, model=None):
     print(f"\n\nStart to evaluate {args.model_name}'s {args.split} split. \n\n")
     time_elapsed = 0
     start_time = time.time()
@@ -173,9 +180,9 @@ def _eval(args):
     resume = False
     if os.path.exists(response_file):
         status = read_status(args)
-        if not dict_equal(status['args'], args.__dict__):
-            raise ValueError(f"The model response file {response_file} already exists. The cached arguments are "
-                            "different from those in the current run. Please check.")
+        # if not dict_equal(status['args'], args.__dict__):
+        #     raise ValueError(f"The model response file {response_file} already exists. The cached arguments are "
+        #                     "different from those in the current run. Please check.")
         if status['status']['status'] == 'complete':
             print(f"The evaluation for {args.model_name}'s {args.split} "
                     "split is already complete. Skipping.")
@@ -192,7 +199,9 @@ def _eval(args):
                                 "lines as recorded in cached metadadta. Please check the response file. "
                                 "You might consider delete the response and metadata file to start from scratch.")
     
-    model = mix_eval.api.registry.get_model(args.model_name)(args)
+    if model is None:
+        model = mix_eval.api.registry.get_model(args.model_name)(args)
+        
     eval_dataset = get_eval_dataset(args)
     dataloader = DataLoader(
         eval_dataset, 
@@ -234,19 +243,22 @@ def _eval(args):
     cache_status(args, status)
     print(f"Finished evaluating {args.model_name}'s {args.split} split. "
           f"Used {round(time_elapsed / 60, 2)} minutes.")
+    
+    return model
 
 
 def eval(args):
+    model = None
     if args.benchmark == "mixeval":
         args.split = "close_freeform"
-        _eval(args)
+        model = _eval(args, model)
         args.split = "close_multichoice"
-        _eval(args)
+        _eval(args, model)
     elif args.benchmark == "mixeval_hard":
         args.split = "close_freeform_hard"
-        _eval(args)
+        model = _eval(args, model)
         args.split = "close_multichoice_hard"
-        _eval(args)
+        _eval(args, model)
     else:
         raise ValueError(f"Benchmark {args.benchmark} not supported.")
 

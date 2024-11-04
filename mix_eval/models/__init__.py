@@ -7,6 +7,7 @@ AVAILABLE_MODELS = {
     
     "llama_3_8b": "Llama_3_8B",
     "llama_3_8b_instruct": "Llama_3_8B_Instruct",
+    "llama_3_8b_instruct_vllm": "Llama_3_8B_Instruct_vLLM",
     "llama_3_70b": "Llama_3_70B",
     "llama_3_70b_instruct": "Llama_3_70B_Instruct",
     
@@ -38,6 +39,7 @@ AVAILABLE_MODELS = {
     "gemma_7b": "Gemma_7B",
     "gemma_11_2b_instruct": "Gemma_11_2B_Instruct",
     "gemma_11_7b_instruct": "Gemma_11_7B_Instruct",
+    "gemma_2_2b": "Gemma_2_2B",
     "gemma_2_9b_instruct": "Gemma_2_9B_Instruct",
     "gemma_2_27b_instruct": "Gemma_2_27B_Instruct",
     
