@@ -29,7 +29,7 @@ setup(
         'reka-api>=2.0.0',
         'dashscope>=1.19.2',
         "prettytable",
-        "vllm==0.5.5",
+        # "vllm==0.5.5",
     ],
     package_data={
     },
